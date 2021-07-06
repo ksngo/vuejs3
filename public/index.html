@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    
+</head>
+<body>
+    <div id="hello-world" class="demo">
+        {{ message }}
+        <div> counter : {{ counter}}  </div>
+        <button v-on:click="stopInterval" v-bind:title="buttonMessage">Stop</button> 
+        <blockquote open>v-on here is to allow tag attribute be attached to an event listener that will refer to the vue object on invoking method upon event listening.</blockquote><br>
+        <blockquote open>v-bind here is to allow tag attribute to refer to the vue object.</blockquote>
+       &#38;<br>
+        Insert you complains: <input v-model="complains" />
+        &#38;<br>
+        Indicate if you are sick: <input type='radio' id="sick" v-bind:value='true' v-model='isSick' /><label for='sick'> Sick </label>
+        <input type='radio' id="notsick" v-bind:value='false' v-model='isSick' /><label for='notsick'> Not Sick </label>
+        <div v-if="isSick">I am sick!</div>
+        <div v-else>I am not sick!</div>
+        <blockquote open>v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
+        <blockquote open>v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
+        <li v-for="item in illnesses"> {{item.text}}</li>
+        <blockquote open>v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
+        <ol>
+            <sample-component v-bind:sample="sample" v-for='sample in samples' v-bind:key="sample"></sample-component>
+        </ol>
+    </div>
+    <script src="vue.js"></script>
+</body>
+</html>

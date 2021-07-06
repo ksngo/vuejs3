@@ -1,0 +1,26 @@
+{
+  "name": "vuejs3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksngo/vuejs3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksngo/vuejs3/issues"
+  },
+  "homepage": "https://github.com/ksngo/vuejs3#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "vue": "^3.1.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.1.4"
+  }
+}
