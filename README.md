@@ -1,2 +1,2 @@
 
-https://v3.vuejs.org/guide/instance.html#the-root-component
+https://v3.vuejs.org/guide/class-and-style.html#binding-html-classes
