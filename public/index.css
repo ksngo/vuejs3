@@ -8,3 +8,24 @@
     user-select: none;
     overflow-x: auto;
   }
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue
+}
+
+.borderDotted {
+  border-style: dotted;
+}
+
+.purple {
+  color: purple
+}
+
+blockquote {
+  color: darkslategrey;
+  background-color: lightblue;
+}

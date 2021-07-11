@@ -21,7 +21,15 @@ const vueAppObj = {
             author: {
                 name: 'ks',
                 books: [ 'book1', 'book2', 'book3']
-            }
+            },
+            redClass: { red : true},
+            isBlue: true,
+            purpleClass: 'purple',
+            borderDotted: 'borderDotted',
+            activeColor: 'red',
+            fontSize: 13,
+            styleObject: {color: 'blue', fontSize: '13px'},
+            styleObject2: {borderStyle: 'dotted'}
         }
     },
     computed: {
@@ -66,6 +74,9 @@ const vueAppObj = {
         },
         customAction: function(event) {
             confirm("testing custom attribute to the v-directives")
+        },
+        inputChange(event) {
+            console.log(event.target.value)
         }
     }
 }
@@ -121,7 +132,7 @@ vueApp.component('sample-component2',{
             }
         }
     },
-    template: ` <h3>start of sample-component2</h3><button @click='methodClick'> Try component's method click </button><br>
+    template: ` <h3>start of sample-component2 &#x2935;</h3><button @click='methodClick'> Try component's method click </button><br>
     <button @click='createdClick'> Try component's created lifecycle click </button>
     <div>'this' in sample-component2 instance : {{ this }} </div> 
     <div>By JS expressions in template: There are {{ authorprop.books.length > 0 ? authorprop.books.length : 'no'}} books. </div>
@@ -129,11 +140,59 @@ vueApp.component('sample-component2',{
     <div> author's name : {{authorprop.name}} </div>
     <div> {{sample_component2_data}} </div>
     <button @click="this.sample_component2_data = 'good'"> change to "good" </button>
-    <h3>end of sample-component2</h3>
+    <h3>end of sample-component2 &#x2934;</h3>
     `
     //you see, there are no data set in this component instance(i.e. sample-component2); I am using sample-component2 property's 'authorprop' to fetch in the value from the application instance
     // if i use `this` in this scope, it refers to the sample-component2 instance only and not referring to the vueApp instance only
 })
+
+vueApp.component('sample-component3', {
+    template: `
+    <h3>start of sample-component3 &#x2935;</h3>
+    <p :class="$attrs.class"> class inheritance from component to a target root element </p>
+    <h3>end of sample-component3 &#x2934;</h3>
+    `
+})
+
+vueApp.component('sample-component4', {
+    data() {
+        return {
+            placeholder : "sample-component4"
+        }
+    },
+    template: `
+        <div> <h6>start of sample-component4 &#x2935;</h6>
+        <blockquote open>
+        &#x2935; <br>
+        1. inheriting attribute from component to root element. <br>
+        2. This is a non-prop attribute as it is not defined in the component in props/emits. <br>
+        3. Notice that the method has to be placed in the application instance instead of the sample-component-4 instance.
+        </blockquote>
+        <input size="50" :placeholder='placeholder'/>
+        <h6>end of sample-component4 &#x2934;</h6></div>
+    `
+})
+
+vueApp.component('sample-component5', {
+    inheritAttrs: false,
+    data() {
+        return {
+            placeholder : "sample-component5"
+        }
+    },
+    template: `
+        <div> <h6>start of sample-component5 &#x2935;</h6>
+        <blockquote open>
+        &#x2935; <br>
+        1. Difference from sample-component4 <br>
+        2. placing inheritAttrs to false will prevent default inheriting attributes from component to root element(i.e div in this case) <br>
+        3. to target specific &lt;input&gt; element, add v-bind="$attrs"
+        </blockquote>
+        <input size="50" :placeholder='placeholder' v-bind="$attrs"/>
+        <h6>end of sample-component5 &#x2934;</h6></div>
+    `
+})
+
 
 vueApp.mount('#hello-world'); // mount the application instance to a new root/component instance; i think under the hood, it will stored into vueApp instance as vueApp.$#hello-world
 

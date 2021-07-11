@@ -15,8 +15,8 @@
         {{ message }}
         <div ref='my own ref 2'> counter : {{ counter}}  </div>
         <button v-on:click="stopInterval" v-bind:title="buttonMessage">Stop</button> 
-        <blockquote open>v-on here is to allow tag attribute be attached to an event listener that will refer to the vue object on invoking method upon event listening.</blockquote><br>
-        <blockquote open>v-bind here is to allow tag attribute to refer to the vue object.</blockquote>
+        <blockquote open>	&#x2934; v-on here is to allow tag attribute be attached to an event listener that will refer to the vue object on invoking method upon event listening.</blockquote><br>
+        <blockquote open>	&#x2934; v-bind here is to allow tag attribute to refer to the vue object.</blockquote>
        &#38;<br>
         Insert you complains: <input v-model="complains" />
         &#38;<br>
@@ -24,19 +24,31 @@
         <input type='radio' id="notsick" v-bind:value='false' v-model='isSick' /><label for='notsick'> Not Sick </label>
         <div v-if="isSick">I am sick!</div>
         <div v-else>I am not sick!</div>
-        <blockquote open>v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
-        <blockquote open>v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
+        <blockquote open>	&#x2934; v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
+        <blockquote open>	&#x2934; v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
         <li v-for="item in illnesses"> {{item.text}}</li>
-        <blockquote open>v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
+        <blockquote open>	&#x2934; v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
         <ol>
             <sample-component v-bind:sam="item" v-for='item in samples' v-bind:key="item" ref='my own reference'></sample-component>
         </ol>
         <button v-on:[attributeone]="customAction" v-bind:[attributetwo]="buttonMessage2">hover over me</button> 
         <br>
         <sample-component2 :authorprop="author"></sample-component2>
-        <blockquote open>watch option for reacting to data changes and especially for aynchronous operations .</blockquote>
+        <blockquote open>watch option for reacting to data changes and especially for aynchronous operations . &#x2935;</blockquote>
         <input v-model='authorName' />
         <button @click='authorName ="ngo kee"'>set name to ngo kee</button>
+        <blockquote open>v-binding to class attribute &#x2935;</blockquote>
+        <div :class="redClass"> class binding by object syntax (not inline) "outcome==> class='red'"</div>
+        <div :class="{ blue : isBlue }"> class binding by object syntax (inline) "outcome==> class='blue'" </div>
+        <div :class="[purpleClass, borderDotted]">class binding by array syntax "outcome==> class='purple borderDotted'"</div>
+        <div :class="[ {red: true}, borderDotted]"> class binding by array syntax with object syntax inside "outcome==> class='red borderDotted'"</div>
+        <blockquote open>v-binding to style attribute &#x2935;</blockquote>
+        <div :style="{color: 'red', fontSize: fontSize+'px' }"> style binding by javascript object (inline) </div>
+        <div :style="styleObject"> style binding by javascript object (not inline) </div>
+        <div :style="[styleObject, styleObject2]"> style binding by array with multiple javascript object </div>
+        <sample-component3 class="blue borderDotted"></sample-component3>
+        <sample-component4 @keyup="inputChange"></sample-component4>
+        <sample-component5 @keyup="inputChange"></sample-component5>
     </div>
     <script src="vue.js"></script>
 </body>
