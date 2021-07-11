@@ -22,10 +22,12 @@
         &#38;<br>
         Indicate if you are sick: <input type='radio' id="sick" v-bind:value='true' v-model='isSick' /><label for='sick'> Sick </label>
         <input type='radio' id="notsick" v-bind:value='false' v-model='isSick' /><label for='notsick'> Not Sick </label>
-        <div v-if="isSick">I am sick!</div>
+        <div v-if="isSick">v-if directive: I am sick!</div>
         <div v-else>I am not sick!</div>
+        <div v-show='isSick'> v-show: I am sick!</div>
         <blockquote open>	&#x2934; v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
         <blockquote open>	&#x2934; v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
+        <blockquote open>	&#x2934; v-if, v-else, v-show in tag for conditional rendering .</blockquote>
         <li v-for="item in illnesses"> {{item.text}}</li>
         <blockquote open>	&#x2934; v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
         <ol>
