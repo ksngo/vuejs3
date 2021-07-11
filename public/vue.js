@@ -37,7 +37,9 @@ const vueAppObj = {
             styleObject: {color: 'blue', fontSize: '13px'},
             styleObject2: {borderStyle: 'dotted'},
             appInstanceToLearnItems: ["vuejs", "reactjs", "javascript", "python"],
-            tolearnInput: ""
+            tolearnInput: "",
+            keyModifiers: ["enter","tab","delete","escape","space","arrowup","arrowdown","arrowleft","arrowright"],
+            keyupeventsname: "keyup.enter"
         }
     },
     computed: {
@@ -54,6 +56,7 @@ const vueAppObj = {
                 return person.age <= 30
             })
         }
+       
     },
     created(){
 
@@ -94,6 +97,25 @@ const vueAppObj = {
         submitNewToLearn() {
             this.appInstanceToLearnItems.push(this.tolearnInput);
             this.tolearnInput = "";
+        },
+        doOne(event) {
+            console.log(event)
+        },
+        doTwo(event) {
+            console.log(event)
+        },
+        tryEnterKeyModifiers(event) {
+            console.log(event)
+        },
+        tryDeleteKeyModifiers(event) {
+            console.log(event)
+        },
+        tryDifferentKeyModifiers(event, modifier){
+            // console.log(modifier)
+            // console.log(event.key.toLowerCase())
+            if(event.key.toLowerCase() === modifier){
+                console.log(event)
+            }
         }
     }
 }
@@ -218,7 +240,8 @@ vueApp.component('to-do-component', {
         }
     },
     methods: {
-        submitToDoForm(){
+        submitToDoForm(event){
+            console.log(event)
             this.todoItems.push(this.inputToDo);
             this.inputToDo = "";
         }, 

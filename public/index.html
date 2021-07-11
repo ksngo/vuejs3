@@ -86,6 +86,14 @@
                 2. using v-for in component
             </blockquote>
         </div>
+        <button @click="doOne($event), doTwo($event)">Trigger multiple events</button>
+        <blockquote open>multiple event handlers and passing $event variable as argument &#x2934;</blockquote>
+        <input @keyup.enter="tryEnterKeyModifiers" placeholder= "Try key modifier 'enter'"/>
+        <input @keyup.delete="tryDeleteKeyModifiers" placeholder= "Try key modifier 'delete"/>
+        <input v-for="modifier in keyModifiers" v-on:keyup="tryDifferentKeyModifiers($event, modifier)" :placeholder="'try ' + modifier"/>
+        <blockquote open> &#x2934; <br>  1.key modifiers <br>
+            2. I tried having dynamic modifier(e.g. v-on:keyup.[modifier]) but doesn't work; have to create my logic to handle that and using $event variables to capture the different keyups events
+        </blockquote>
         
     </div>
     <script src="vue.js"></script>
