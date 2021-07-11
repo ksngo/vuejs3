@@ -39,7 +39,9 @@ const vueAppObj = {
             appInstanceToLearnItems: ["vuejs", "reactjs", "javascript", "python"],
             tolearnInput: "",
             keyModifiers: ["enter","tab","delete","escape","space","arrowup","arrowdown","arrowleft","arrowright"],
-            keyupeventsname: "keyup.enter"
+            keyupeventsname: "keyup.enter",
+            testVmodel: "",
+            testManualBinding: ""
         }
     },
     computed: {
@@ -116,6 +118,10 @@ const vueAppObj = {
             if(event.key.toLowerCase() === modifier){
                 console.log(event)
             }
+        },
+        bindToData(event) {
+            console.log(event.target.value)
+            this.testManualBinding = event.target.value;
         }
     }
 }

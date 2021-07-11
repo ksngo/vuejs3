@@ -94,6 +94,12 @@
         <blockquote open> &#x2934; <br>  1.key modifiers <br>
             2. I tried having dynamic modifier(e.g. v-on:keyup.[modifier]) but doesn't work; have to create my logic to handle that and using $event variables to capture the different keyups events
         </blockquote>
+        <label for="input1"> test v-model: {{testVmodel}} </label>
+        <input id="input1" v-model="testVmodel" /><br>
+        <label for="input2"> test without v-model: {{testManualBinding}} </label>
+        <input id="input2" :value="testManualBinding" @keyup="bindToData" />
+        <blockquote open> &#x2934; <br>  1.Form input bindings <br>
+        </blockquote>
         
     </div>
     <script src="vue.js"></script>
