@@ -14,6 +14,12 @@ const vueAppObj = {
             isSick: false,
             complains: '...',
             illnesses: [{text :'fever'}, {text: 'flu'}, {text: 'diarrhea'}],
+            medicinesObj: {
+                name: "panadol",
+                manufacturer: 'gsk global',
+                date: new Date().toLocaleDateString()
+            },
+            participants: [ {name: "john", age: 22}, {name: "mary", age: 25}, {name : "alice" , age: 55}, { name: "darth vadar", age: 24} ],
             samples: ['sample1', 'sample2', 'sample3'],
             attributeone: 'click',
             attributetwo: 'title',
@@ -29,7 +35,9 @@ const vueAppObj = {
             activeColor: 'red',
             fontSize: 13,
             styleObject: {color: 'blue', fontSize: '13px'},
-            styleObject2: {borderStyle: 'dotted'}
+            styleObject2: {borderStyle: 'dotted'},
+            appInstanceToLearnItems: ["vuejs", "reactjs", "javascript", "python"],
+            tolearnInput: ""
         }
     },
     computed: {
@@ -40,6 +48,11 @@ const vueAppObj = {
             set(name) {
                 this.author.name = name;
             }
+        },
+        filterYoungerParticipants() {
+            return this.participants.filter((person)=> {
+                return person.age <= 30
+            })
         }
     },
     created(){
@@ -77,6 +90,10 @@ const vueAppObj = {
         },
         inputChange(event) {
             console.log(event.target.value)
+        },
+        submitNewToLearn() {
+            this.appInstanceToLearnItems.push(this.tolearnInput);
+            this.tolearnInput = "";
         }
     }
 }
@@ -132,7 +149,7 @@ vueApp.component('sample-component2',{
             }
         }
     },
-    template: ` <h3>start of sample-component2 &#x2935;</h3><button @click='methodClick'> Try component's method click </button><br>
+    template: ` <h5>start of sample-component2 &#x2935;</h5><button @click='methodClick'> Try component's method click </button><br>
     <button @click='createdClick'> Try component's created lifecycle click </button>
     <div>'this' in sample-component2 instance : {{ this }} </div> 
     <div>By JS expressions in template: There are {{ authorprop.books.length > 0 ? authorprop.books.length : 'no'}} books. </div>
@@ -140,7 +157,7 @@ vueApp.component('sample-component2',{
     <div> author's name : {{authorprop.name}} </div>
     <div> {{sample_component2_data}} </div>
     <button @click="this.sample_component2_data = 'good'"> change to "good" </button>
-    <h3>end of sample-component2 &#x2934;</h3>
+    <h5>end of sample-component2 &#x2934;</h5>
     `
     //you see, there are no data set in this component instance(i.e. sample-component2); I am using sample-component2 property's 'authorprop' to fetch in the value from the application instance
     // if i use `this` in this scope, it refers to the sample-component2 instance only and not referring to the vueApp instance only
@@ -148,9 +165,9 @@ vueApp.component('sample-component2',{
 
 vueApp.component('sample-component3', {
     template: `
-    <h3>start of sample-component3 &#x2935;</h3>
+    <h5>start of sample-component3 &#x2935;</h5>
     <p :class="$attrs.class"> class inheritance from component to a target root element </p>
-    <h3>end of sample-component3 &#x2934;</h3>
+    <h5>end of sample-component3 &#x2934;</h5>
     `
 })
 
@@ -161,7 +178,7 @@ vueApp.component('sample-component4', {
         }
     },
     template: `
-        <div> <h6>start of sample-component4 &#x2935;</h6>
+        <div> <h5>start of sample-component4 &#x2935;</h5>
         <blockquote open>
         &#x2935; <br>
         1. inheriting attribute from component to root element. <br>
@@ -169,7 +186,7 @@ vueApp.component('sample-component4', {
         3. Notice that the method has to be placed in the application instance instead of the sample-component-4 instance.
         </blockquote>
         <input size="50" :placeholder='placeholder'/>
-        <h6>end of sample-component4 &#x2934;</h6></div>
+        <h5>end of sample-component4 &#x2934;</h5></div>
     `
 })
 
@@ -181,7 +198,7 @@ vueApp.component('sample-component5', {
         }
     },
     template: `
-        <div> <h6>start of sample-component5 &#x2935;</h6>
+        <div> <h5>start of sample-component5 &#x2935;</h5>
         <blockquote open>
         &#x2935; <br>
         1. Difference from sample-component4 <br>
@@ -189,7 +206,49 @@ vueApp.component('sample-component5', {
         3. to target specific &lt;input&gt; element, add v-bind="$attrs"
         </blockquote>
         <input size="50" :placeholder='placeholder' v-bind="$attrs"/>
-        <h6>end of sample-component5 &#x2934;</h6></div>
+        <h5>end of sample-component5 &#x2934;</h5></div>
+    `
+})
+
+vueApp.component('to-do-component', {
+    data(){
+        return {
+            todoItems: ["sleep", "cry", "pray"],
+            inputToDo: ""
+        }
+    },
+    methods: {
+        submitToDoForm(){
+            this.todoItems.push(this.inputToDo);
+            this.inputToDo = "";
+        }, 
+        remove(index){
+            this.todoItems.splice(index,1)
+        }
+    },
+    template: `
+    <h5>start of to-do-component &#x2935;</h5>
+    <form @submit.prevent="submitToDoForm">
+        <label for="todo"> Add to todo </label>
+        <input id="todo" placeholder="E.g. clean car" v-model="inputToDo"/>
+        <input type="submit" value="Add"/>
+    </form>
+    <ul>
+        <li v-for="(item, index) in todoItems" :key="index" > {{item}} 
+        <button @click="remove(index)" >Remove by Method</button> 
+        <button @click="$emit('destroy')"> Remove by event emitter </button>
+        </li>
+    </ul>
+    <blockquote open>&#x2934;<br> 1.remove by method </blockquote>
+    <h5>end of to-do-component &#x2934;</h5>
+    `
+})
+
+vueApp.component("to-learn-component", {
+    props: ['item'],
+    emits: ['destroy'],
+    template: `
+        <li>  {{item}}  <button @click="$emit('destroy')"> Remove by event emitter </button> </li>
     `
 })
 

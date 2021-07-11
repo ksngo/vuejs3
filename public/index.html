@@ -28,8 +28,26 @@
         <blockquote open>	&#x2934; v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
         <blockquote open>	&#x2934; v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
         <blockquote open>	&#x2934; v-if, v-else, v-show in tag for conditional rendering .</blockquote>
-        <li v-for="item in illnesses"> {{item.text}}</li>
+        <li v-for="item in illnesses" > {{item.text}}</li>
         <blockquote open>	&#x2934; v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
+        <li v-for="(item,index) in illnesses"> {{index}}:{{item.text}}</li>
+        <blockquote open>	&#x2934; v-for supports optional 2nd argument for index .</blockquote>
+        <li v-for="(value,key, index) in medicinesObj"> {{index}}. {{key}}:{{value}}</li>
+        <blockquote open>	&#x2934; v-for also allows iterating over javascript object(key and index are optional).</blockquote>
+        <ul>
+            <template v-for="(value,key, index) in medicinesObj">
+                <hr>
+                <li > {{index}}. {{key}}:{{value}}</li>
+                <hr>
+            </template>
+        </ul>
+        <blockquote open>	&#x2934; v-for in &lt;template&gt; to encompass multiple elements).</blockquote>
+        <select><option v-for="(item, index) in filterYoungerParticipants" :key="index"> {{index}} - {{item.name}} -- {{item.age}} years old </option>  </select>
+        <blockquote open>	&#x2934; <br>
+            1. providing a :key attribute to v-for whenever possible <br> 
+            2. the list is being filtered in computed options. <br>
+            3. using methods options is also ok for cases like nested v-for
+        </blockquote>
         <ol>
             <sample-component v-bind:sam="item" v-for='item in samples' v-bind:key="item" ref='my own reference'></sample-component>
         </ol>
@@ -51,6 +69,24 @@
         <sample-component3 class="blue borderDotted"></sample-component3>
         <sample-component4 @keyup="inputChange"></sample-component4>
         <sample-component5 @keyup="inputChange"></sample-component5>
+        <to-do-component></to-do-component>
+        <div>
+            <form @submit.prevent="submitNewToLearn" >
+                <label for="tolearn">To learn </label>
+                <input id="tolearn" placeholder="e.g. Kotlin " v-model="tolearnInput" />
+                <input type='submit' name="Learn">
+            </form>
+            <ul>
+                <h5>start of to-learn-component (v-for in component) &#x2935;</h5>
+                <to-learn-component v-for="(item,index) in appInstanceToLearnItems" :item="item" @destroy="appInstanceToLearnItems.splice(index,1)" ></to-learn-component>
+                <h5>end of to-learn-component (v-for in component) &#x2934;</h5>
+            </ul>
+            <blockquote open>&#x2934;<br>
+                1. Remove by emitter from within template(via $emit('eventName')) and trigger the event in its component(the component instance should have the emits property).<br>
+                2. using v-for in component
+            </blockquote>
+        </div>
+        
     </div>
     <script src="vue.js"></script>
 </body>
