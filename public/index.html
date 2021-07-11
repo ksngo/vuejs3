@@ -28,12 +28,17 @@
         <blockquote open>	&#x2934; v-bind here is to allow tag attribute to refer to javascript true or false.</blockquote>
         <blockquote open>	&#x2934; v-model here allows tag attribute to refer to vue object and allowing two way binding .</blockquote>
         <blockquote open>	&#x2934; v-if, v-else, v-show in tag for conditional rendering .</blockquote>
+        
+        
         <li v-for="item in illnesses" > {{item.text}}</li>
         <blockquote open>	&#x2934; v-for here allows tag attribute to refer to vue object and refer to the array .</blockquote>
         <li v-for="(item,index) in illnesses"> {{index}}:{{item.text}}</li>
         <blockquote open>	&#x2934; v-for supports optional 2nd argument for index .</blockquote>
         <li v-for="(value,key, index) in medicinesObj"> {{index}}. {{key}}:{{value}}</li>
         <blockquote open>	&#x2934; v-for also allows iterating over javascript object(key and index are optional).</blockquote>
+        
+        
+        
         <ul>
             <template v-for="(value,key, index) in medicinesObj">
                 <hr>
@@ -42,26 +47,41 @@
             </template>
         </ul>
         <blockquote open>	&#x2934; v-for in &lt;template&gt; to encompass multiple elements).</blockquote>
+        
+        
+        
         <select><option v-for="(item, index) in filterYoungerParticipants" :key="index"> {{index}} - {{item.name}} -- {{item.age}} years old </option>  </select>
         <blockquote open>	&#x2934; <br>
             1. providing a :key attribute to v-for whenever possible <br> 
             2. the list is being filtered in computed options. <br>
             3. using methods options is also ok for cases like nested v-for
         </blockquote>
+        
+        
+        
         <ol>
             <sample-component v-bind:sam="item" v-for='item in samples' v-bind:key="item" ref='my own reference'></sample-component>
         </ol>
         <button v-on:[attributeone]="customAction" v-bind:[attributetwo]="buttonMessage2">hover over me</button> 
         <br>
         <sample-component2 :authorprop="author"></sample-component2>
-        <blockquote open>watch option for reacting to data changes and especially for aynchronous operations . &#x2935;</blockquote>
+        
+        
+        
+        <blockquote open>watch option for reacting to data changes and especially for aynchronous operations . &#x2935;</blockquote> 
         <input v-model='authorName' />
         <button @click='authorName ="ngo kee"'>set name to ngo kee</button>
+        
+        
+        
         <blockquote open>v-binding to class attribute &#x2935;</blockquote>
         <div :class="redClass"> class binding by object syntax (not inline) "outcome==> class='red'"</div>
         <div :class="{ blue : isBlue }"> class binding by object syntax (inline) "outcome==> class='blue'" </div>
         <div :class="[purpleClass, borderDotted]">class binding by array syntax "outcome==> class='purple borderDotted'"</div>
         <div :class="[ {red: true}, borderDotted]"> class binding by array syntax with object syntax inside "outcome==> class='red borderDotted'"</div>
+       
+       
+       
         <blockquote open>v-binding to style attribute &#x2935;</blockquote>
         <div :style="{color: 'red', fontSize: fontSize+'px' }"> style binding by javascript object (inline) </div>
         <div :style="styleObject"> style binding by javascript object (not inline) </div>
@@ -86,20 +106,60 @@
                 2. using v-for in component
             </blockquote>
         </div>
+        
+
+
         <button @click="doOne($event), doTwo($event)">Trigger multiple events</button>
         <blockquote open>multiple event handlers and passing $event variable as argument &#x2934;</blockquote>
+        
+        
+
         <input @keyup.enter="tryEnterKeyModifiers" placeholder= "Try key modifier 'enter'"/>
         <input @keyup.delete="tryDeleteKeyModifiers" placeholder= "Try key modifier 'delete"/>
         <input v-for="modifier in keyModifiers" v-on:keyup="tryDifferentKeyModifiers($event, modifier)" :placeholder="'try ' + modifier"/>
         <blockquote open> &#x2934; <br>  1.key modifiers <br>
             2. I tried having dynamic modifier(e.g. v-on:keyup.[modifier]) but doesn't work; have to create my logic to handle that and using $event variables to capture the different keyups events
         </blockquote>
+        
+        
+
         <label for="input1"> test v-model: {{testVmodel}} </label>
         <input id="input1" v-model="testVmodel" /><br>
         <label for="input2"> test without v-model: {{testManualBinding}} </label>
         <input id="input2" :value="testManualBinding" @keyup="bindToData" />
         <blockquote open> &#x2934; <br>  1.Form input bindings <br>
         </blockquote>
+        
+        
+
+        <h5>start of sample-component6 &#x2935;</h5>
+        <sample-component6 v-model="sampleComponent6Input"></sample-component6>
+        <h5>end of sample-component6 &#x2934;</h5>
+        <blockquote open> &#x2934; <br>  
+            <strong>Summary: This is the normal way to use V-model in component.</strong> <br>
+            1. sample-component6 is using V-model in component attribute <br>
+            2. modelValue is the default props in component attribute when using V-model; hence add props modelValue to template of component <br>
+            3. need to trigger event from within template &lt;input&gt; , the event is 'update:modelValue' which is the default event in the component attribute when using V-model in component attribute.
+            The value from  &lt;input&gt; when user input, is passed to component attribute V-model as 2nd argument of the $emit as $event.target.value
+        </blockquote>
+        
+        
+
+        <h5>start of sample-component7 &#x2935;</h5>
+        <sample-component7 @update:model-value="sampleComponent7Input = $event" :model-value="sampleComponent7Input"></sample-component7>
+        <h5>end of sample-component7 &#x2934;</h5>
+        <blockquote open> &#x2934; <br>  
+            <strong>Summary: This is just to show what V-model effectively replaces.</strong> <br>
+            1. The only difference of sample-component7 from sample-component6 is that the attributes in sample-component7 are directly equivalent to what v-model attribute in sample-component6 achieves <br>
+            2. again, the emitter will trigger '@update:modelValue' and $event.target.value from template is passed to component as $event. <br>
+            3. <strong>NOTE: html attributes names are case insensitive; henceforth, use kebab-cased(e.g. model-value) instead of CamelCased(modelValue) in html</strong> <br>
+            4. instead of v-model, used v-bind:model-value to bind to the data() storage in root instance. Again, model-value is the default which matches the props defined in the component instance.
+            The value from  &lt;input&gt; when user input, is passed to component attribute V-model as 2nd argument of the $emit as $event.target.value
+        </blockquote>
+        
+        <h5>start of sample-component8 &#x2935;</h5>
+        <sample-component8> Writing inside components are something new till now.</sample-component8>
+        <h5>end of sample-component8 &#x2934;</h5>
         
     </div>
     <script src="vue.js"></script>

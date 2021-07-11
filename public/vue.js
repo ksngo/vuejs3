@@ -41,7 +41,9 @@ const vueAppObj = {
             keyModifiers: ["enter","tab","delete","escape","space","arrowup","arrowdown","arrowleft","arrowright"],
             keyupeventsname: "keyup.enter",
             testVmodel: "",
-            testManualBinding: ""
+            testManualBinding: "",
+            sampleComponent6Input: "",
+            sampleComponent7Input: ""
         }
     },
     computed: {
@@ -209,7 +211,7 @@ vueApp.component('sample-component4', {
         <div> <h5>start of sample-component4 &#x2935;</h5>
         <blockquote open>
         &#x2935; <br>
-        1. inheriting attribute from component to root element. <br>
+        1. inheriting attribute from component to root element. (don't confuse with root instance; root element is found inside template within the component; root instance is the Vue application instance) <br>
         2. This is a non-prop attribute as it is not defined in the component in props/emits. <br>
         3. Notice that the method has to be placed in the application instance instead of the sample-component-4 instance.
         </blockquote>
@@ -281,6 +283,29 @@ vueApp.component("to-learn-component", {
     `
 })
 
+vueApp.component("sample-component6", {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template: `
+        <input @input="$emit('update:modelValue', $event.target.value)"/>
+        <label> Output: {{modelValue}} </label>
+    `
+})
+
+vueApp.component("sample-component7", {
+    props: ['modelValue'],
+    emits: ['update:modelValue'],
+    template: `
+        <input @input="$emit('update:modelValue', $event.target.value)"/>
+        <label> Output: {{modelValue}} </label>
+    `
+})
+
+vueApp.component("sample-component8", {
+    template: `
+        <div> <strong> Passing content into component tags by using &lt;slot&gt; :</strong>  <slot></slot></div>
+    `
+})
 
 vueApp.mount('#hello-world'); // mount the application instance to a new root/component instance; i think under the hood, it will stored into vueApp instance as vueApp.$#hello-world
 
