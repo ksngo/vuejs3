@@ -160,6 +160,24 @@
         <h5>start of sample-component8 &#x2935;</h5>
         <sample-component8> Writing inside components are something new till now.</sample-component8>
         <h5>end of sample-component8 &#x2934;</h5>
+
+        <h5>start of local-component-a &#x2935;</h5>
+        <local-component-a></local-component-a>
+        <h5>end of local-component-a &#x2934;</h5>
+
+        <h5>start of local-component-b &#x2935;</h5>
+        <local-component-b paramone="100"> Basic passing value(javascript expression) to a prop </local-component-b>
+        <local-component-b paramone="message"> Basic passing value(javascript expression) to a prop </local-component-b>
+        <local-component-b :paramone="message"> Passing value(javascript expression) to a prop with v-bind </local-component-b>
+        <local-component-b :paramone=" 'I ate '+medicinesObj.name+' made from '+medicinesObj.manufacturer+' on '+medicinesObj.date"> Passing value(more complex javascript expression) to a prop with v-bind </local-component-b>
+        <local-component-b paramone> Passing no value(javascript expression) to a prop </local-component-b>
+        <local-component-b paramone="true"> Passing boolean(javascript expression) to a prop </local-component-b>
+        <local-component-b paramone="[123,456,789]"> Passing array to a prop as a string instead of javascript expression </local-component-b>
+        <local-component-b :paramone="[123,456,789]"> Passing array(javascript expression) to a prop requires a v-bind to tell Vue this is a javascript expression </local-component-b>
+        <local-component-b paramone="{interest: 'soccer', passion: 'music'}"> Passing object to a prop as a string instead of javascript expression  </local-component-b>
+        <local-component-b :paramone="{interest: 'soccer', passion: 'music'}"> Passing object(javascript expression) to a prop requires a v-bind to tell Vue this is a javascript expression </local-component-b>
+        <local-component-b v-bind="interestPassionOBj"> Passing object(javascript expression) <strong>to multiple props</strong> with only v-bind </local-component-b>
+        <h5>end of local-component-b &#x2934;</h5>
         
     </div>
     <script src="vue.js"></script>

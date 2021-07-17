@@ -4,7 +4,22 @@
 
 var myinterval;
 
+const localComponentA = {
+    template: `<div> I am a local Component instead of the global components that are built before me </div>`
+}
+
+//remember, props shouldn't be camelcase
+const localComponentB = {
+    props: ['paramone', 'interest', 'passion'],
+    template: `<div> props value:  {{interest && passion? interest +","+ passion : paramone}} {{paramone && paramone.interest? paramone.interest+','+paramone.passion: ''}} ==> <slot></slot> </div>`
+}
+
 const vueAppObj = {
+
+    components: {
+        'local-component-a' : localComponentA,
+        'local-component-b' : localComponentB
+    },
 
     data() {
         return {
@@ -43,7 +58,8 @@ const vueAppObj = {
             testVmodel: "",
             testManualBinding: "",
             sampleComponent6Input: "",
-            sampleComponent7Input: ""
+            sampleComponent7Input: "",
+            interestPassionOBj: {interest: 'soccer', passion: 'music'}
         }
     },
     computed: {
@@ -306,6 +322,10 @@ vueApp.component("sample-component8", {
         <div> <strong> Passing content into component tags by using &lt;slot&gt; :</strong>  <slot></slot></div>
     `
 })
+
+
+
+
 
 vueApp.mount('#hello-world'); // mount the application instance to a new root/component instance; i think under the hood, it will stored into vueApp instance as vueApp.$#hello-world
 
