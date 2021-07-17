@@ -210,12 +210,23 @@ vueApp.component('sample-component2',{
 })
 
 vueApp.component('sample-component3', {
+    props: ['testprop'],
+    created(){
+        console.log("sample-component3 instance's $attrs:", this.$attrs)
+        console.log("location of testprop in instance:", this.testprop)
+    },
     template: `
     <h5>start of sample-component3 &#x2935;</h5>
-    <p :class="$attrs.class"> class inheritance from component to a target root element </p>
+    <p :class="$attrs.class"> class inheritance from component to a target root element, this is done through $attrs </p>
+    <p :class="$attrs.class"> props value(testprop): {{testprop}} </p>
     <h5>end of sample-component3 &#x2934;</h5>
     `
 })
+// this.$attrs is a property in the component instance. 
+// it stores the attributes found in <sample-component3>
+// the attributes can be props defined in the component
+// or the attributes can be non-prop, meaning the props are not defined in the component
+// this.$attrs or $attrs seem fine
 
 vueApp.component('sample-component4', {
     data() {
@@ -242,6 +253,9 @@ vueApp.component('sample-component5', {
         return {
             placeholder : "sample-component5"
         }
+    },
+    created() {
+        console.log("sample-component5 instance's $attrs:", this.$attrs)
     },
     template: `
         <div> <h5>start of sample-component5 &#x2935;</h5>

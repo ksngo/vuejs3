@@ -86,7 +86,7 @@
         <div :style="{color: 'red', fontSize: fontSize+'px' }"> style binding by javascript object (inline) </div>
         <div :style="styleObject"> style binding by javascript object (not inline) </div>
         <div :style="[styleObject, styleObject2]"> style binding by array with multiple javascript object </div>
-        <sample-component3 class="blue borderDotted"></sample-component3>
+        <sample-component3 class="blue borderDotted" testprop="true"></sample-component3>
         <sample-component4 @keyup="inputChange"></sample-component4>
         <sample-component5 @keyup="inputChange"></sample-component5>
         <to-do-component></to-do-component>
