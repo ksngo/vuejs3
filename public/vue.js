@@ -332,10 +332,42 @@ vueApp.component("sample-component7", {
 })
 
 vueApp.component("sample-component8", {
+    data() {
+        return {
+            sampleComponent8Msg : "hello 8"
+        }
+    },
     template: `
-        <div> <strong> Passing content into component tags by using &lt;slot&gt; :</strong>  <slot></slot></div>
+        <div> <strong> Passing content into component tags by using &lt;slot&gt; :</strong>  <slot>Default Value</slot></div>
     `
 })
+
+vueApp.component("sample-component9", {
+    template: `
+        <div>
+            <strong><slot></slot></strong> <br>
+            <slot name="sentenceone"> </slot> <br>
+            <slot name="sentencetwo"> </slot> <br>
+            <slot name="sentencethree"> </slot>
+            
+        </div>
+    `
+})
+
+vueApp.component("sample-component10", {
+    data() {
+        return {
+            sampleComponent10Msg: "sampleComponent10Msg"
+        }
+    },
+    template: `
+        <div>
+            <strong><slot></slot></strong> <br>
+            <slot name="sentenceone" :customattribute="sampleComponent10Msg"> </slot>
+        </div>
+    `
+})
+
 
 
 

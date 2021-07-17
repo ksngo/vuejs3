@@ -1,5 +1,5 @@
 
-https://v3.vuejs.org/guide/component-props.html#passing-an-object
+https://v3.vuejs.org/guide/component-slots.html#slot-content
 
 attributes, non-prop or prop, $attrs
 1. know that the attributes in component tag are found in $attrs in the component instance if the attributes are not defined in the props option of the component. This is know as non-prop attribute. Hence, value in a non-prop attribute in component tag are accessible from $attrs.
@@ -20,3 +20,10 @@ event, emits option,  $emit()
 v-model
 1. I think that if v-model is used in standard html tag, it will perform two way binding automatically?
 2. But, if v-model is used in a custom Vue component tag, need to $emit('update:modelValue' , $event.target.value) and save to correspondong props option property modelValue?
+
+slots(v-slots: shorthand is #)
+###### Passing content from parent to child 
+1. parent to child: slot tags are placed inside child component(component instance's template) and content between component's tags are passed to the child component 
+2. parent to child: slot tags can have name attribute. In the parent component side, using &lt;template&gt; and v-slot:theNameAttribute, we can target the content between the component tags to pass to the slot tags with theNameAttribute.
+###### Passing content from child to parent
+1. child to parent: slot tags can have custom attributes. The custome attribute will carry the child component's data. In the parent component side, using  &lt;template&gt; and v-slot:(which slot , default or slot's name attribute) = "slotProps" and {{slotProps.customAttribute}} , the data is in slotProps.

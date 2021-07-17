@@ -158,8 +158,28 @@
         </blockquote>
         
         <h5>start of sample-component8 &#x2935;</h5>
-        <sample-component8> Writing inside components are something new till now.</sample-component8>
+        <sample-component8> Writing inside components are something new till now. <br> Vue App instance's message: {{message}} <br> component instance's message (See, I can't access child component(sample-component8) data from here): {{sampleComponent8Msg}} </sample-component8>
+        <!-- See, I can't access child component(sample-component8) data from here -->
+        <sample-component8></sample-component8>
+        <!-- not passing content to span will show default value between span tags -->
         <h5>end of sample-component8 &#x2934;</h5>
+
+        <h5>start of sample-component9 &#x2935;</h5>
+        <sample-component9>
+            <template v-slot:default> slots with name attribute </template>
+            <template v-slot:sentenceone>1. Using &lt;template&gt; and v-slot:spanName directive </template>
+            <template v-slot:sentencetwo> 2. To point to &lt;span name="spanName" &gt; </template>
+            <template v-slot:sentencethree>3. to pass content between '&lt;template&gt; in &lt;sample-component9&gt;' to '&lt;span&gt; in component instance's template </template>
+            
+        </sample-component9>
+        <h5>end of sample-component9 &#x2934;</h5>
+
+        <h5>start of sample-component10 &#x2935;</h5>
+        <sample-component10>
+            <template v-slot:default> slots with custom attributes to store child component's data and use it from parent component with 'slotProps' </template>
+            <template v-slot:sentenceone="slotProps"> {{slotProps.customattribute}}  </template>
+        </sample-component10>
+        <h5>end of sample-component10 &#x2934;</h5>
 
         <h5>start of local-component-a &#x2935;</h5>
         <local-component-a></local-component-a>
