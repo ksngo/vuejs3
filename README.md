@@ -9,7 +9,7 @@ https://v3.vuejs.org/guide/component-provide-inject.html#working-with-reactivity
 ### "" in tag
 *  content between "" of tag are not string but treated as javascript expression
 
-{{}} between opening tag and closing tag
+### {{}} between opening tag and closing tag
 * content between {{}} are javascript expression?
 
 ### event, emits option,  $emit()
