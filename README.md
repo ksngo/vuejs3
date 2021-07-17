@@ -1,5 +1,5 @@
 
-https://v3.vuejs.org/guide/component-slots.html#slot-content
+https://v3.vuejs.org/guide/component-provide-inject.html#working-with-reactivity
 
 attributes, non-prop or prop, $attrs
 1. know that the attributes in component tag are found in $attrs in the component instance if the attributes are not defined in the props option of the component. This is know as non-prop attribute. Hence, value in a non-prop attribute in component tag are accessible from $attrs.
