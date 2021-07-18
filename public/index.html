@@ -198,6 +198,13 @@
         <local-component-b :paramone="{interest: 'soccer', passion: 'music'}"> Passing object(javascript expression) to a prop requires a v-bind to tell Vue this is a javascript expression </local-component-b>
         <local-component-b v-bind="interestPassionOBj"> Passing object(javascript expression) <strong>to multiple props</strong> with only v-bind </local-component-b>
         <h5>end of local-component-b &#x2934;</h5>
+
+        <h5>start of todo-list component &#x2935; <u>To test on provide and inject</u></h5>
+        <todo-list></todo-list>
+        <blockquote open> &#x2934; <br>  1. provide user data in the topmost component <br>
+            2. inject user into the bottom component
+        </blockquote>
+        <h5>end of todo-list component &#x2934;</h5>
         
     </div>
     <script src="vue.js"></script>

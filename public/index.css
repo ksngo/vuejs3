@@ -19,6 +19,7 @@
 
 .borderDotted {
   border-style: dotted;
+  padding: 15px 15px 15px 15px;
 }
 
 .purple {
@@ -28,4 +29,8 @@
 blockquote {
   color: darkslategrey;
   background-color: lightblue;
+}
+
+small {
+  color: purple;
 }

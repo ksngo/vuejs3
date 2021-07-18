@@ -297,7 +297,6 @@ vueApp.component('to-do-component', {
     <ul>
         <li v-for="(item, index) in todoItems" :key="index" > {{item}} 
         <button @click="remove(index)" >Remove by Method</button> 
-        <button @click="$emit('destroy')"> Remove by event emitter </button>
         </li>
     </ul>
     <blockquote open>&#x2934;<br> 1.remove by method </blockquote>
@@ -364,6 +363,91 @@ vueApp.component("sample-component10", {
         <div>
             <strong><slot></slot></strong> <br>
             <slot name="sentenceone" :customattribute="sampleComponent10Msg"> </slot>
+        </div>
+    `
+})
+
+vueApp.component("todo-list", {
+    data() {
+        return {
+            user: "a_user"
+        }
+    },
+    provide() {
+        return {
+            user : this.user
+        }
+    },
+    template: `
+    <div class="borderDotted">
+        <small>todo-list </small><br><br/>
+        <todo-item></todo-item>
+        <todo-list-footer></todo-list-footer>
+    </div>
+    `
+})
+
+vueApp.component("todo-item", {
+    data() {
+        return {
+            todoItems: ['Nothing', 'Nothing2', 'nothing3'],
+            inputstream: ""
+        }
+    },
+    methods: {
+        submitForm(event) {
+            this.todoItems.push(this.inputstream);
+            this.inputstream = "";
+            //submit event is normal html event, we use v-on:submit and preventdefault to trigger this function when form is submitted.
+        },
+        remove(index) {
+            this.todoItems.splice(index,1);
+        }
+    },
+    template: `
+        <div class="borderDotted"> 
+        <small>todo-item </small><br><br/>
+            <form @submit.prevent='submitForm'>
+                <label for="todo"> </label>
+                <input id='todo' type='text' v-model='inputstream' >
+                <input type='submit' value='add'>
+            </form>
+            <br>
+
+            <ol>
+                <li v-for="(item, index) in todoItems" id="index" > {{index}}-{{item}} <button @click="remove(index)"> Remove</button></li>
+            </ol>
+
+        </div>
+    `
+})
+
+vueApp.component("todo-list-footer", {
+    data() {
+        return {
+
+        }
+    },
+    template: `
+        <div class="borderDotted"> 
+        <small> todo-list-footer </small> <br><br/>
+            <h6>Footer</h6>
+            <todo-list-statistics></todo-list-statistics> 
+        </div>
+    `
+})
+
+vueApp.component("todo-list-statistics", {
+    data() {
+        return {
+
+        }
+    },
+    inject: ['user'],
+    template: `
+        <div class="borderDotted"> 
+        <small>todo-list-statistics</small> <br><br/>    
+            statistics for {{this.user}} 
         </div>
     `
 })
