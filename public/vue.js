@@ -1,7 +1,6 @@
 // const Vue = require("vue");
 // import Vue from 'vue'
 
-
 var myinterval;
 
 const localComponentA = {
@@ -13,6 +12,14 @@ const localComponentB = {
     props: ['paramone', 'interest', 'passion'],
     template: `<div> props value:  {{interest && passion? interest +","+ passion : paramone}} {{paramone && paramone.interest? paramone.interest+','+paramone.passion: ''}} ==> <slot></slot> </div>`
 }
+
+const asyncComponentA = Vue.defineAsyncComponent(
+    () => new Promise((resolve, reject) => {
+        resolve({
+            template: '<div> I am async! </div>'
+        })
+    })
+)
 
 const vueAppObj = {
 
@@ -451,6 +458,8 @@ vueApp.component("todo-list-statistics", {
         </div>
     `
 })
+
+vueApp.component('async-component', asyncComponentA)
 
 
 
