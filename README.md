@@ -27,3 +27,8 @@ https://v3.vuejs.org/guide/composition-api-introduction.html#why-composition-api
 2. parent to child: slot tags can have name attribute. In the parent component side, using &lt;template&gt; and v-slot:theNameAttribute, we can target the content between the component tags to pass to the slot tags with theNameAttribute.
 ###### Passing content from child to parent
 1. child to parent: slot tags can have custom attributes. The custome attribute will carry the child component's data. In the parent component side, using  &lt;template&gt; and v-slot:(which slot , default or slot's name attribute) = "slotProps" and {{slotProps.customAttribute}} , the data is in slotProps.
+
+### $options
+1. normal options (e.g. created(), data(), methods, template, computed, mixins)
+2. possible to create custom option (e.g Vue.createApp({ myOption: 'hello'})
+3. options should be available in this.$options

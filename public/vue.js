@@ -461,6 +461,55 @@ vueApp.component("todo-list-statistics", {
 
 vueApp.component('async-component', asyncComponentA)
 
+const mylocalMixin = {
+    data() {
+        return {
+            variable1 : "weak",
+            variable2 : "pretty",
+            pokemons: ["pikachu", "charmelion", "dazzle", "butcher"],
+            query: "",
+        }
+    },
+    created() {
+        console.log("mixin for sample-component11");
+        this.methodFromGlobalMixin();
+    },
+    methods: {
+        filter() {
+            if(this.query === "") {
+                return this.pokemons;
+            } else {
+                return this.pokemons.filter((check)=> `${this.variable1} and ${this.variable2} ${check}`.toLowerCase().indexOf(this.query) > -1);
+            }
+        }
+    }
+}
+
+vueApp.component("sample-component11", {
+    mixins: [mylocalMixin],
+    data() {
+        return {
+            variable1 : "strong"
+        }
+    },
+    template: `
+        <input v-model="query" type="text" id="search"><label for="search">Search</label>
+        <ol>
+            <li v-for="(item, index) in filter()" id="index"> {{variable1}} and {{variable2}} {{item}} </li>
+        </ol>
+    `
+
+})
+
+vueApp.mixin({
+    methods: {
+        methodFromGlobalMixin() {
+            console.log("I am method from global mixin")
+        }
+    }
+})
+
+
 
 
 
