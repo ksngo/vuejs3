@@ -1,5 +1,5 @@
 
-https://v3.vuejs.org/guide/composition-api-introduction.html#why-composition-api
+https://v3.vuejs.org/guide/render-function.html#the-dom-tree
 
 ### attributes, non-prop or prop, $attrs
 1. know that the attributes in component tag are found in $attrs in the component instance if the attributes are not defined in the props option of the component. This is know as non-prop attribute. Hence, value in a non-prop attribute in component tag are accessible from $attrs.
@@ -32,3 +32,8 @@ https://v3.vuejs.org/guide/composition-api-introduction.html#why-composition-api
 1. normal options (e.g. created(), data(), methods, template, computed, mixins)
 2. possible to create custom option (e.g Vue.createApp({ myOption: 'hello'})
 3. options should be available in this.$options
+
+### Topics (read-only)
+1. Compostion API
+2. custom directives
+3. <teleport></teleport>
