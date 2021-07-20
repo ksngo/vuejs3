@@ -171,6 +171,8 @@ vueApp.component('sample-component2',{
         this.createdClick = function(){
             confirm('testing created lifecycle click')
         }
+
+        console.log("'this' in sample-component2 instance :", this)
     },
     methods: {
         methodClick: function(){
@@ -204,7 +206,6 @@ vueApp.component('sample-component2',{
     },
     template: ` <h5>start of sample-component2 &#x2935;</h5><button @click='methodClick'> Try component's method click </button><br>
     <button @click='createdClick'> Try component's created lifecycle click </button>
-    <div>'this' in sample-component2 instance : {{ this }} </div> 
     <div>By JS expressions in template: There are {{ authorprop.books.length > 0 ? authorprop.books.length : 'no'}} books. </div>
     <div>By computed property: There are {{ isBooksAvailable}} books. </div>
     <div> author's name : {{authorprop.name}} </div>
@@ -415,8 +416,8 @@ vueApp.component("todo-item", {
         <div class="borderDotted"> 
         <small>todo-item </small><br><br/>
             <form @submit.prevent='submitForm'>
-                <label for="todo"> </label>
-                <input id='todo' type='text' v-model='inputstream' >
+                <label for="todo2"> </label>
+                <input id='todo2' type='text' v-model='inputstream' >
                 <input type='submit' value='add'>
             </form>
             <br>
@@ -506,6 +507,50 @@ vueApp.mixin({
         methodFromGlobalMixin() {
             console.log("I am method from global mixin")
         }
+    }
+})
+
+vueApp.component('sample-component12', {
+    render() {
+
+        // create kebab-case id from the text contents of the children
+        const headingId = this.getChildrenTextContent(this.$slots.default())
+            .toLowerCase()
+            .replace(/\W+/g, '-') // replace non-word characters with dash
+            .replace(/(^-|-$)/g, '') // remove leading and trailing dashes
+        
+        return Vue.h(
+            'h'+this.level,
+            [ Vue.h(
+                'a',
+                { href : '#'+headingId,
+                name : headingId
+                },
+                [this.$slots.default(), this.parameter1]
+            ), Vue.h('button',{onClick: event => {this.parameter1 = "parameter1"}}, "reset"),
+               Vue.h('input', {onKeyup: event => {this.parameter1 = event.target.value} }) 
+        ]
+
+        )
+    },
+    data() {
+        return {
+            parameter1: "parameter1"
+        }
+    },
+    props: ['level'],
+    methods: {
+        getChildrenTextContent(children) {
+            return children
+              .map(node => {
+                return typeof node.children === 'string'
+                  ? node.children
+                  : Array.isArray(node.children)
+                  ? getChildrenTextContent(node.children)
+                  : ''
+              })
+              .join('')
+          }
     }
 })
 
