@@ -220,6 +220,19 @@
         <sample-component12 :level="4"> h4</sample-component12>
         <h5>end of sample-component12 &#x2934;</h5>
 
+        <h5> Reactivity concept and why Javascript is pass by value &#x2935;</h5>
+        <img src='react_example.JPG'>
+        <blockquote open> &#x2934; <br>  
+            <strong>Summary: example showing how to make reactive as javascript is pass by value.</strong> <br>
+            1. such reactivity or 'wrapping in a function' is being tracked by and stored into <strong>effect</strong>, which is ran by Vue's <strong>track function</strong><br>
+            2. when a parameter(requires reactive) is changed, it will trigger Vue's <strong>trigger function</strong> in the <strong>proxy instance</strong>, which do a check with the records in <strong>effect</strong><br>
+            3. the <strong> effect </strong> have the functions that the changed parameters affects and therefore run those functions to update the new value.<br>
+        </blockquote>
+
+        <h5>end &#x2934;</h5>
+
+
+
     </div>
     <script src="vue.js"></script>
 </body>
