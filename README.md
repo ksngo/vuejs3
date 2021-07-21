@@ -1,6 +1,32 @@
 
 https://v3.vuejs.org/guide/single-file-component.html#introduction
 
+## Folders
+
+### vuejs3
+```javascript
+node server.js
+// open port at /static
+```
+### vuejs3/vueCreate
+```javascript
+npm install -g @vue/cli @vue/cli-service-global @vue/compiler-sfc
+"//@vue/cli-service-global": "vue serve/build for rapid prototyping relies on this "
+vue create myProject
+//my Project folder created and create with webpack, babel or manual choices
+cd myProject && npm run serve
+//create a vue.config.js with following
+module.exports = {
+    devServer: {
+        disableHostCheck: true
+    }
+}
+```
+
+
+
+## Notes
+
 ### attributes, non-prop or prop, $attrs
 1. know that the attributes in component tag are found in $attrs in the component instance if the attributes are not defined in the props option of the component. This is know as non-prop attribute. Hence, value in a non-prop attribute in component tag are accessible from $attrs.
 2. for prop attribute in component tag, it must have been defined in the props option of the component and the prop will be directly accessible from the component instance(this) .
