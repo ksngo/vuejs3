@@ -1,5 +1,5 @@
 
-https://v3.vuejs.org/guide/single-file-component.html#introduction
+https://next.router.vuejs.org/guide/essentials/redirect-and-alias.html
 
 ## Folders
 
