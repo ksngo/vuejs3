@@ -11,6 +11,19 @@
   </div>
 </template>
 
+<script>
+import { RouterLink } from 'vue-router'
+// No idea what is this RouterLink for?
+
+export default {
+  created() {
+    console.log("RouterLink.props", RouterLink.props)
+    confirm("App.vue")
+  }
+}
+</script>
+
+
 <style>
 #main {
   display: grid;

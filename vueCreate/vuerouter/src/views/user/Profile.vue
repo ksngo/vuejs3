@@ -7,6 +7,8 @@
         <li> Name: {{$route.params.name}}  </li>
         <li> sex: </li>
         <li> age: </li>
+        <li> {{passingValueAsPropstoProfileComponent}} </li>
+        <li> {{route}} </li>
       </ul>
     </div>
   </div>
@@ -18,6 +20,7 @@
     created() {
       console.log("Profile.vue: ",this.$route)
     },
+    props: ['passingValueAsPropstoProfileComponent', 'route'],
     watch: {
         '$route'(newValue, oldValue) {
             console.log("Profile.vue: newValue", newValue)

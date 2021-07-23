@@ -1,9 +1,10 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import NotFound from "../views/NotFound.vue"
 import Profile from "../views/user/Profile.vue"
 import Posts from "../views/user/Posts.vue"
 import LeftSidebar from "../views/LeftSidebar.vue"
+import checkUserAccess from "../myutility/login.js"
 
 const routes = [
   {
@@ -12,6 +13,14 @@ const routes = [
     components: {
       default: Home,
       LeftSidebar
+    },
+    alias: '/homealias'
+  },
+  {
+    path: "/home",
+    redirect: to => {
+      console.log("to :",to);
+      return "/"
     }
   },
   {
@@ -38,20 +47,39 @@ const routes = [
     children: [
       {
         path: 'profile',
-        component: Profile
+        component: Profile,
+        props: (route)=> ({ passingValueAsPropstoProfileComponent: "passingValueAsPropstoProfileComponent is successful", route})
       },
       {
         path: 'posts',
-        component: Posts
+        component: Posts,
+        props: true
       },
 
-    ]
+    ],
+    meta: {requiresAuth: true}
   }
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
+
+router.beforeEach(async (to,from)=>{
+
+  let canAccess;
+  console.log("from",from)
+
+  if(to.meta.requiresAuth) {
+    canAccess = await checkUserAccess(to);
+    if(!canAccess) return '/'
+  }
+
+})
+
+console.log(router.getRoutes())
+
+
 
 export default router;

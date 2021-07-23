@@ -1,5 +1,5 @@
 
-https://next.router.vuejs.org/guide/essentials/redirect-and-alias.html
+https://v3.vuejs.org/guide/state-management.html#official-flux-like-implementation
 
 ## Folders
 
