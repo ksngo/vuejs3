@@ -3457,7 +3457,8 @@ const routes = [
   ]
 
   // testing /workspace/vuejs3/vueCreate/vuerouter/node_modules/vue-router/dist/vue-router.global.js
-  
+  // Run in debugger mode: node /workspace/vuejs3/vueCreate/vuerouter/src/router/testingVueRouter.js
+
   VueRouter({}, Vue).createRouter({
       history: {},
       routes,
