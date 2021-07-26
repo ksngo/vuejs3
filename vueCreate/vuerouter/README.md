@@ -1,6 +1,6 @@
 # vuerouter
 
-## Notes
+## Notes for vue-router
 1. for &lt;router-view&gt; in App.vue's template, it will look across all objects(e.g. Home.vue, About.vue, User.vue) in src/router/index.js, it will use whichever listed component according to which route
 2. for &lt;router-view&gt; in User.vue's template, it will look at the object that contains name=User and component=User.vue, it will refer to the children option for which component to render accoording to the route.
 
@@ -17,6 +17,26 @@
 
 ### Don't understand
 1. extending routerlink
+
+## Notes for vuex
+1. only able to change vueX state by $store.commit
+2. ```javascript
+    ...mapActions({
+        //either use mapActions helper in computed option or use $store.dispatch('anAction') to trigger action in the store's actions property.
+        //the action can returned a resolved promise, hence $store.dispatch('anAction').then(()=>{...}) is ok
+        //$store.dispatch('anAction') means running anAction method in store's instance actions props. IN the anAction method, access to mutations is via context.commit('aMutation') 
+        //or access to action is via context.dispatch('anAction')
+        //***Remember that $store.dispatch('anAction') is for running store's instance actions action
+      })
+    ```
+3. ```javascript
+    ...mapMutations({
+        //or use $store.commit('aMutation') to trigger mutation in the store's mutations property
+        //$store.commit('aMutation') means running aMutation method in store's instance mutation props. In the aMutation method, access to state is via state.aParticularState
+        //$store.commit('aMutation', value). The value will be passed to aMutation method as argument.
+        //***Remember that $store.commit('aMutation') is for running store's instance mutations mutation
+      })
+    ```
 
 ## Project setup
 ```
