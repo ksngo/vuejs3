@@ -1,5 +1,6 @@
 
-https://v3.vuejs.org/guide/state-management.html#official-flux-like-implementation
+https://v3.vuejs.org/
+https://nuxtjs.org/
 
 ## Folders
 

@@ -38,6 +38,11 @@
       })
     ```
 
+## Notes for SSR
+1. Don't understand Build Configuration
+2. Don't understand Client Side Hydration
+
+
 ## Project setup
 ```
 npm install
