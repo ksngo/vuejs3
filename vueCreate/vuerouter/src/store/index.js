@@ -21,7 +21,9 @@ export default createStore({
     },
     mutateId(state, id) {
       console.log('vuex state chosenId before:', state.chosenId)
-      state.chosenId = id
+      if(Number.isInteger(parseInt(id))){
+        state.chosenId = parseInt(id)
+      }
       console.log('vuex state chosenId after:', state.chosenId)
     }
   },
@@ -33,8 +35,10 @@ export default createStore({
     tasksDoneByMapGetters(state) {
       return state.tasksByMapGetters.filter((task)=> task.done === true)
     },
-    tasksQueryByMapGetters: (state)=> (id)=>{
-      return state.tasksByMapGetters.find(task=> task.id === id)
-    }
+    tasksQueryByMapGetters(state) {
+      console.log("getters tasksQueryByMapGetters ")
+      console.log(state.chosenId)
+      console.log(state.tasksByMapGetters.find(task=> {console.log(task.id); return task.id === state.chosenId}))
+      return state.tasksByMapGetters.find(task=> task.id === state.chosenId) }
   }
 });

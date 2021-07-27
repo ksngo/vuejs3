@@ -14,8 +14,10 @@
       <br><br>
       <label> tasks by mapGetters : {{tasksDone}}</label><br>
       <label> tasks Id by mapGetters : {{tasksDone.map((task)=>task.id)}}</label> <br>
-      <label> task query by Id: {{tasksDoneQuery(chosenId) }}</label>
-      <input type='number' v-model='chosenId' @keyup="vuexMutateId($event, chosenId)"/>
+      <form>
+        <label for='chooseId'> task query by Id: {{tasksDoneQuery }}</label>
+        <input id='chooseId' name='chooseId' type='number' step='1' min='1' max='4' v-model='chosenId'>
+      </form>
     </div>
   </div>
 </template>
@@ -33,8 +35,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
     },
     data() {
       return {
-        localCount: 110,
-        chosenId: 1
+        localCount: 110
       }
     },
     methods: {
@@ -43,15 +44,17 @@ import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
       },
       vuexDecrement() {
         this.$store.commit('decrement') // Either use $store.commit in methods option to commit mutations in the store(vueX) or use ...mapMutations helper in computed option 
-      },
-      vuexMutateId(event, id) {
-        console.log('hello mutate')
-        console.log(event)
-        console.log(id)
-        this.$store.commit('mutateId', id)
       }
     },
     computed: {
+      chosenId: {
+        get () {
+          return this.$store.state.chosenId
+        },
+        set (value) {
+           this.$store.commit('mutateId', value)
+        }
+      },
       countNormal() {
         return this.$store.state.countNormal
       },
