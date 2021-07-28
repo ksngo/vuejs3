@@ -1,6 +1,6 @@
 
 https://v3.vuejs.org/
-https://nuxtjs.org/
+https://nuxtjs.org/docs/2.x/concepts/context-helpers
 
 ## Folders
 
