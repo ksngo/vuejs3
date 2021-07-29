@@ -75,3 +75,13 @@
     </v-col>
   </v-row>
 </template>
+
+<style>
+a.nuxt-link-active {
+  color: #00c58e;
+}
+
+a.nuxt-link-exact-active {
+  color: orange;
+}
+</style>

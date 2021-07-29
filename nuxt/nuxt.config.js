@@ -1,9 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  target: 'static',
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -24,7 +23,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
+  css: [ '~/assets/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -65,5 +64,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  serverMiddleware: ['~/serverMiddleware/logger'],
+  
+  loading: '~/components/LoadingBar.vue',
+  loadingIndicator: {
+    name: 'wandering-cubes',
+    color: '#3B8070',
+    background: 'white'
   }
 }

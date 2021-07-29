@@ -105,7 +105,22 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
-        }
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'parent',
+          to: '/parent'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'testing',
+          to: '/testing'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'testdynamic',
+          to: '/testdynamic'
+        },
       ],
       miniVariant: false,
       right: true,
