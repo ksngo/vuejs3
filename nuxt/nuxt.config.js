@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
+console.log("process.env",process.env)
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
@@ -73,5 +75,17 @@ export default {
     name: 'wandering-cubes',
     color: '#3B8070',
     background: 'white'
+  },
+
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || 'https://happygolucky.org',
+    apiSecret: process.env.API_SECRET || 'nothingsecret'
+  },
+
+  
+  privateRuntimeConfig: {
+    apiSecret: process.env.API_SECRET || 'nothing'
   }
+  
+
 }

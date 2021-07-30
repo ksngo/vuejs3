@@ -5,6 +5,9 @@
         <client-only>
             <vuetify-logo/>
         </client-only>
+        <div>{{ baseurl }}</div>
+        <p>Our Url is: {{ $config.baseURL}}</p>
+        <p>Our api secret is: {{ $config.apiSecret}}</p>
     </div>
 </template>
 
@@ -64,7 +67,12 @@ export default {
     // console.log("from",from)
     // console.log("nuxtState",nuxtState)
   }
-  return { content: 'Created at: ' + new Date() }
+
+  console.log("$config", $config)
+  console.log("$config.baseURL", $config.baseURL )
+  console.log("$config.API_SECRET", $config.apiSecret )
+
+  return { content: 'Created at: ' + new Date() , baseurl: $config.baseURL }
 },
 methods: {
     refresh() {

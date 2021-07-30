@@ -1,6 +1,6 @@
 
 https://v3.vuejs.org/
-https://nuxtjs.org/docs/2.x/concepts/context-helpers
+https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-alias
 
 ## Folders
 

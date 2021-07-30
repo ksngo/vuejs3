@@ -22,7 +22,7 @@ https://maddevs.io/blog/how-to-configure-ssg-and-ssr-on-nuxt/
 - static hosting
     - use 'nuxt generate' to generate static files for every routes to keep in 'dist' folder
     - {target: 'static' } should be inside nuxt.config.js
-    - i think should be used in conjunction with {ssr: true}
+    - i think should be used in conjunction with {ssr: true} ?
 - server hosting
     - {target: 'server'} is default in nuxt.config.js
     - for the purpose of server side rendering(SSR)
@@ -48,6 +48,20 @@ https://maddevs.io/blog/how-to-configure-ssg-and-ssr-on-nuxt/
 - &lt;client-only &gt; , only render on client-side
 #### Transitions
 #### Preview Mode
+
+### Directory Structure
+#### assets
+- uncompiled assets such as css, images, fonts
+#### middleware
+- customs functions that can run before rendering a page or a groups of pages(layout)
+#### modules
+- extensions that extend Nuxt's core functionalities
+#### plugins
+- if want to add a Vue plugin(xxx)/module to Vue.use(xxx), then should create a plugin in plugins folder
+- contains plugins that want to run before instantiating root Vue application.
+- inject() is by nuxt.js that will inject variable/functions into Vue instance(e.g. this at clientside) or context(server side)
+#### nuxt.config.js
+- configure nuxt through this file
 
 
 ## Build Setup
